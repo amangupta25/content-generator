@@ -24,6 +24,7 @@ def get_content():
                 frequency_penalty=0.0,
                 presence_penalty=0.0
               )
+        return jsonify({"status" : "ok", "result" : response.choices[0].text.strip() })
     except:
         print("An exception occurred")
-    return jsonify({"status" : "ok", "result" : response.choices[0].text.strip() })
+    return jsonify({"status" : "error" })

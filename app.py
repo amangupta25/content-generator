@@ -26,4 +26,4 @@ def get_content():
               )
     except:
         print("An exception occurred")
-    return jsonify({"status" : "ok", "result" : strip(response.choices[0].text) })
+    return jsonify({"status" : "ok", "result" : response.choices[0].text.strip() })

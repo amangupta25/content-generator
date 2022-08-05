@@ -1,5 +1,6 @@
 import os
 import openai
+import json
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -10,12 +11,13 @@ openai.api_key = os.environ['OPEN_AI_KEY']
 def index():
     return "Hello World!"
 
-@app.route('/getContent/<string:prompt>/', methods=['GET'])
+@app.route('/getContent/', methods=['POST'])
 def get_content(prompt):
     try:
+        record = json.loads(request.data)
         response = openai.Completion.create(
                 model="text-davinci-002",
-                prompt=prompt,
+                prompt=record['prompt'],
                 temperature=0.5,
                 max_tokens=60,
                 top_p=1.0,
@@ -24,4 +26,4 @@ def get_content(prompt):
               )
     except:
         print("An exception occurred")
-    return jsonify({"status" : "ok", "result" : response.choices[0].text })
+    return jsonify({"status" : "ok", "result" : strip(response.choices[0].text) })

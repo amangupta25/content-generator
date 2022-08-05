@@ -12,7 +12,7 @@ def index():
     return "Hello World!"
 
 @app.route('/getContent/', methods=['POST'])
-def get_content(prompt):
+def get_content():
     try:
         record = json.loads(request.data)
         response = openai.Completion.create(

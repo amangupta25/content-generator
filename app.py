@@ -11,13 +11,14 @@ def index():
 
 @app.route('/getContent/<string:prompt>/', methods=['GET'])
 def get_content(prompt):
-    response = openai.Completion.create(
-        model="text-davinci-002",
-        prompt=prompt,
-        temperature=0.5,
-        max_tokens=60,
-        top_p=1.0,
-        frequency_penalty=0.0,
-        presence_penalty=0.0
-      )
-    return jsonify({"status" : "ok", "result" : response.choices[0].text })
+#     response = openai.Completion.create(
+#         model="text-davinci-002",
+#         prompt=prompt,
+#         temperature=0.5,
+#         max_tokens=60,
+#         top_p=1.0,
+#         frequency_penalty=0.0,
+#         presence_penalty=0.0
+#       )
+#     return jsonify({"status" : "ok", "result" : response.choices[0].text })
+    return prompt
